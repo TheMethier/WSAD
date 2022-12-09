@@ -1,11 +1,12 @@
 # Strona-z-grami
-Strona stworzona przy pomocy Asp .Net Core MVC 
-# Co powinno się na tej stronie znajdować:
--koszyk z obsługą dodawania gier
--użytkownicy (logowanie, rejestrowanie, obsługa zamówień)
--Strona główna z okienkami 
--wyświetlanie opsu gry itp.
--komentarze
+Aplikacja webowa sklepu z grami z obsługą koszyka i komentarzy zrealizowana przy użyciu ASP .Net Core MVC z frontendem pisanym w CSSie oraz Bootstrapie 5.
+# Założenia projektowe (co powinno się na takiej stronie znajdować):
+- koszyk z obsługą dodawania gier
+- użytkownicy (logowanie, rejestrowanie, obsługa zamówień, obsługa komentarzy)
+- strona główna z okienkami 
+- wyświetlanie opisu gry itp.
+- komentarze (dodawanie komentarzy do gry)
+<!---
 I.Gra:
 Id
 Nazwa 
@@ -20,3 +21,4 @@ Użytkownik
 Ocena
 Treść
 Zamównienie:
+--->
