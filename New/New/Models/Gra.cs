@@ -2,16 +2,18 @@
 {
     public class Gra
     {
-        public Gra(int id, string nazwa, string z1, string z2, string z3, string kategoria, double cena, string opis)
+        public Gra(int id, string nazwa, string zdjęcie1, string zdjęcie2, string zdjęcie3, string kategoria, double cena, string opis, string specyfikacjat, string aktywacja)
         {
             this.Cena = cena;
             this.Opis = opis;   
             this.Id = id;
             this.Nazwa = nazwa;
-            this.Zdjęcie1 = z1;
-            this.Zdjęcie2 = z2;
-            this.Zdjęcie3 = z3;
+            this.Zdjęcie1 = zdjęcie1;
+            this.Zdjęcie2 = zdjęcie2;
+            this.Zdjęcie3 = zdjęcie3;
             this.Kategoria = kategoria;
+            this.Specyfikacjat = specyfikacjat;
+            this.Aktywacja = aktywacja;
         }
         public int Id { get; set; }
         public string Nazwa { get; set; }
@@ -21,7 +23,10 @@
         public string Kategoria { get; set; }
         public double Cena { get; set; }
         public string Opis { get; set; }
-        public string SpecyfikacjaT { get; set; }
+        public string Specyfikacjat { get; set; }
         public string Aktywacja { get; set; }
+
+        public ICollection<NowyKomentarz> NowyKomentarz { get; set; }
+        public ICollection<Element_koszyka> Element_koszyka { get; set; }
     }
 }

@@ -13,6 +13,7 @@ namespace New.Models
         public string Ocena { get; set; }
         [Required]
         public string Treść { get; set; }
+        public Gra Gra { get; set; }
 
     }
 }

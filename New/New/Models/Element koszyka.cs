@@ -2,7 +2,7 @@
 {
     public class Element_koszyka
     {
-        public string ElementId { get; set; }
+        public Guid ElementId { get; set; }
         public string KoszykId { get; set; }
         public int Ilość { get; set; }
         public int GraId { get; set; }
