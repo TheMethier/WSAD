@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "PKV6O3HUlN2HhDBIa44BgOx0D6fA6ZGyPLp/0j6zbh3yyXF8kefncD3DzB8UH6gHhj+zBz7xWPrEWSA7LZqO5Q==",
+  "dgSpecHash": "dFGce5nknPJnP8PnwX1P6n/o7+OCsFm9Q7yZAjPgfKXuKJDFjKSDSN90R2orvDWgFhfB0T4LxrKx5MiS63or8g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\mario\\source\\repos\\Strona-z-grami\\New\\New\\New.csproj",
+  "projectFilePath": "C:\\Users\\mario\\Desktop\\zadaniedomowekredek2\\Strona-z-grami\\New\\New\\New.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mario\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\mario\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

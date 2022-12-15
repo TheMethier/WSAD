@@ -1,0 +1,31 @@
+﻿@model New.Models.NowyKomentarz
+
+@{
+	ViewData["Title"] = "Komentarzowie";
+}
+
+<form asp-action="Dodajkomentarz">
+	<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+	<input asp-for="GraId" type="hidden" value=@ViewBag.gra.Id/>
+	<div class="mb-3">
+		<label asp-for="Username" for="recipient-name" class="col-form-label">Nazwa użytkownika:</label>
+		<input asp-for="Username" type="text" class="form-control">
+	</div>
+	<select asp-for="Ocena" class="form-select" aria-label="Default select example">
+		<option selected>Ocena:</option>
+		<option value="1">Jedna gwiazdka</option>
+		<option value="2">Dwie gwiazdki</option>
+		<option value="3">Trzy gwiazdki</option>
+		<option value="4">Cztery gwiazdki</option>
+		<option value="5">Pięć gwiazdek</option>
+	</select>
+	<div class="mb-3">
+        <label asp-for="Treść" for="message-text" class="col-form-label">Treść komentarza:</label>
+        <textarea asp-for="Treść" class="form-control" id="message-text"></textarea>
+    </div>
+	<div class="modal-footer">
+		<button type="button" onclick="location.href='@Url.Action("Game","Home", new {id = ViewBag.gra.Id})'"class="btn btn-secondary">Zamknij</button>
+		<button type="submit" class="btn btn-primary">Wyślij komentarz!</button>
+	</div>
+
+</form>
