@@ -28,5 +28,8 @@
 
         public ICollection<NowyKomentarz> NowyKomentarz { get; set; }
         public ICollection<Element_koszyka> Element_koszyka { get; set; }
+        public ICollection<OrderDetails> OrderDetails { get; set; }
+
+
     }
 }

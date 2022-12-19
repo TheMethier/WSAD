@@ -1,0 +1,36 @@
+﻿@model New.Models.NowyKomentarz
+
+@{
+	ViewData["Title"] = "Komentarze";
+}
+
+<form asp-action="Dodajkomentarz">
+	<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+	<input asp-for="GraId" type="hidden" value=@ViewBag.gra.Id/>
+	<div class="mb-3">
+		<label asp-for="Username" for="recipient-name" class="col-form-label">Nazwa użytkownika:</label>
+		<input asp-for="Username" type="text" class="form-control" placeholder="Username">
+	    <span asp-validation-for="Username" class="text-danger"></span>
+	</div>
+		<div class="mb-3">
+			<label asp-for="Ocena" for="recipient-name" class="col-form-label">Ocena:</label>
+	<select asp-for="Ocena" class="form-select"  aria-label="Default select example">
+		<option value="1">Jedna gwiazdka</option>
+		<option value="2">Dwie gwiazdki</option>
+		<option value="3">Trzy gwiazdki</option>
+		<option value="4">Cztery gwiazdki</option>
+		<option value="5">Pięć gwiazdek</option>
+	</select>
+	</div>
+	<div class="mb-3">
+        <label asp-for="Treść" for="message-text" class="col-form-label">Treść komentarza:</label>
+        <textarea asp-for="Treść" class="form-control" id="message-text" placeholder="Treść komentarza"></textarea>
+    	    <span asp-validation-for="Treść" class="text-danger"></span>
+
+	</div>
+	<div class="modal-footer">
+		<button type="button" onclick="location.href='@Url.Action("Game","Home", new {id = ViewBag.gra.Id})'"class="btn btn-btn-primary">Zamknij</button>
+		<button type="submit" class="btn btn-dark">Wyślij komentarz!</button>
+	</div>
+
+</form>

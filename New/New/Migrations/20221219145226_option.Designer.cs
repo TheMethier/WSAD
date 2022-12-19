@@ -12,8 +12,8 @@ using New.Models;
 namespace New.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20221212211523_options")]
-    partial class options
+    [Migration("20221219145226_option")]
+    partial class option
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,18 +26,20 @@ namespace New.Migrations
 
             modelBuilder.Entity("New.Models.Element_koszyka", b =>
                 {
-                    b.Property<Guid>("ElementId")
+                    b.Property<int>("ElementId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ElementId"), 1L, 1);
 
                     b.Property<int>("GraId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Ilość")
-                        .HasColumnType("int");
+                    b.Property<double>("Razem")
+                        .HasColumnType("float");
 
-                    b.Property<string>("KoszykId")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ilość")
+                        .HasColumnType("int");
 
                     b.HasKey("ElementId");
 
@@ -114,6 +116,60 @@ namespace New.Migrations
                     b.ToTable("NowyKomentarz");
                 });
 
+            modelBuilder.Entity("New.Models.Order", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreditCard")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Razem")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Order");
+                });
+
+            modelBuilder.Entity("New.Models.OrderDetails", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<double>("Cena")
+                        .HasColumnType("float");
+
+                    b.Property<int>("GraId")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("OrderId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("ilość")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GraId");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("OrderDetails");
+                });
+
             modelBuilder.Entity("New.Models.Element_koszyka", b =>
                 {
                     b.HasOne("New.Models.Gra", "Gra")
@@ -136,11 +192,37 @@ namespace New.Migrations
                     b.Navigation("Gra");
                 });
 
+            modelBuilder.Entity("New.Models.OrderDetails", b =>
+                {
+                    b.HasOne("New.Models.Gra", "gra")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("GraId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("New.Models.Order", "Order")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+
+                    b.Navigation("gra");
+                });
+
             modelBuilder.Entity("New.Models.Gra", b =>
                 {
                     b.Navigation("Element_koszyka");
 
                     b.Navigation("NowyKomentarz");
+
+                    b.Navigation("OrderDetails");
+                });
+
+            modelBuilder.Entity("New.Models.Order", b =>
+                {
+                    b.Navigation("OrderDetails");
                 });
 #pragma warning restore 612, 618
         }

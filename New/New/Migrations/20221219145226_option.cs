@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace New.Migrations
 {
-    public partial class options : Migration
+    public partial class option : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -31,13 +31,30 @@ namespace New.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Order",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreditCard = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Razem = table.Column<double>(type: "float", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Order", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Element_koszyka",
                 columns: table => new
                 {
-                    ElementId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    KoszykId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Ilość = table.Column<int>(type: "int", nullable: false),
-                    GraId = table.Column<int>(type: "int", nullable: false)
+                    ElementId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    GraId = table.Column<int>(type: "int", nullable: false),
+                    ilość = table.Column<int>(type: "int", nullable: false),
+                    Razem = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -71,6 +88,33 @@ namespace New.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "OrderDetails",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    OrderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    GraId = table.Column<int>(type: "int", nullable: false),
+                    ilość = table.Column<int>(type: "int", nullable: false),
+                    Cena = table.Column<double>(type: "float", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderDetails", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_OrderDetails_Gra_GraId",
+                        column: x => x.GraId,
+                        principalTable: "Gra",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_OrderDetails_Order_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "Order",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Element_koszyka_GraId",
                 table: "Element_koszyka",
@@ -80,6 +124,16 @@ namespace New.Migrations
                 name: "IX_NowyKomentarz_GraId",
                 table: "NowyKomentarz",
                 column: "GraId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderDetails_GraId",
+                table: "OrderDetails",
+                column: "GraId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderDetails_OrderId",
+                table: "OrderDetails",
+                column: "OrderId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -91,7 +145,13 @@ namespace New.Migrations
                 name: "NowyKomentarz");
 
             migrationBuilder.DropTable(
+                name: "OrderDetails");
+
+            migrationBuilder.DropTable(
                 name: "Gra");
+
+            migrationBuilder.DropTable(
+                name: "Order");
         }
     }
 }
