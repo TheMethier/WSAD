@@ -19,7 +19,7 @@ body {
 }
 .scroll {
     white-space: nowrap;
-    overflow-y: auto;
+    overflow-x: auto;
     -webkit-overflow-scrolling: touch;
 }
 a:-webkit-any-link {

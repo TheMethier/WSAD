@@ -1,0 +1,232 @@
+﻿@model New.Models.Gra
+@{
+    ViewData["Title"] = "Gra";
+}
+<div class="container-fluid" style="margin:10px;">
+   <div class="row">
+       <div class="col-sm">
+<div class="card" style="width:80vh;height:50vh;">
+<div class="card-header">
+    <header><h1 style="font-size:40px;font-family:'Gill Sans MT';">@Model.Nazwa</h1></header>
+</div>
+<div id="carouselExampleInterval" class="carousel slide w-100" data-bs-ride="carousel" style="margin-top:2vh;height:80vh;width:45vh;">
+  <div class="carousel-inner " style="width:80vh;height:45vh;">
+    <div class="carousel-item active" data-bs-interval="10000">
+      <img src="/images/@Model.Zdjęcie1" class="d-block w-100" alt="..." style="width:80vh;height:45vh;">
+    </div>
+    <div class="carousel-item" data-bs-interval="2000" style="width:80vh;height:45vh;">
+      <img src="~/images/@Model.Zdjęcie2" class="d-block w-100" alt="..." style="width:80vh;height:45vh;">
+    </div>
+    <div class="carousel-item" style="width:80vh;height:45vh;">
+      <img src="~/images/@Model.Zdjęcie3" class="d-block w-100" alt="..." style="width:80vh;height:45vh;">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+</div>
+</div>
+<div class="col-sm">
+  <header><h1 style="font-size:80px;margin-top:15vh;margin-left:5vh;">@Model.Cena zł</h1></header>
+<button type="button" class="btn btn-warning" style=" margin-left:5vh;margin-top:3vh;width:40vh; height:20vh;"><h1 style="font-size:40px; color:white;" data-bs-toggle="modal" data-bs-target="#Kosz" >Dodaj do koszyka</h1></button>
+</div>
+</div>
+
+<!--Dodaj navkę (https://getbootstrap.com/docs/5.0/components/navs-tabs/) i scrollbarra (napis opis) i wystylizuj to żeby jakoś wyglądało-->
+<div class="row" style="width:100vh; font-family:'Gill Sans MT';">
+<div class="card-body" style="background-color: rgba(247,247,247,255); margin-top:10vh; margin-left:2vh; width:100vh; color:black;">
+<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true" style="background-color:rgba(247,247,247,255);color:black;">Opis</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false" style="background-color:rgba(247,247,247,255);color:black;">Specyfikacja techniczna</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false" style="background-color:rgba(247,247,247,255);color:black;">Aktywacja kodu</button>
+  </li>
+</ul>
+<div class="tab-content" id="pills-tabContent" style="background-color: rgba(247,247,247,255);">
+  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">Czternastą odsłoną serii Battlefield będzie Battlefield 1 i będzie kontynuował sukcesy swoich poprzedników. Tym razem popularna gra FPS zostanie osadzona w I wojnie światowej, pierwszej tego typu grze Battlefield.
+@Model.Opis</div>
+  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...</div>
+  <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
+</div>
+</div>
+</div
+>
+<div class="card" style="width:100vh; margin-top:10vh; margin-bottom:10vh;">
+    <div class="card-header">
+    <header><h1 style="font-size:40px;font-family:'Gill Sans MT';">Komentarze</h1></header>
+</div>
+
+  <button type="button" class="btn btn-dark" data-bs-toggle="modal" onclick="location.href='@Url.Action("Dodajkomentarz","Home",new {id = Model.Id})'" data-bs-target="#Koment" style="margin-top:3vh;margin-left:3vh; width:20vh;height:10vh;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-chat-left-text" viewBox="0 0 16 16">
+            <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+            <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6zm0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+        </svg></button>
+               <div class="row">
+<!--Dodaj png ocena i Wystylizuj komentarz-->
+    <div class="card" style="margin-top:3vh; margin-left:5vh; width:80vh; background-color:rgba(247,247,247,255);">
+        <div class="card-body"style="width:80vh;">
+    <div class="col-1" style="width:80vh;">
+    <h2 style="font-size:30px">
+Adolf Hitler
+    </h2>
+    <a>Ocena:</a>
+    <img src="~/images/star1.jpg" style="width:60px;height:20px;"/>
+ </div>   
+    <div style="width:40rem;" class="col-2">
+        <div style="height:50px;"></div>
+    <h5 style="left:6rem;">
+       Chujowa gra. Nie można zabijać Żydów!
+    </h5></div>
+        </div>
+        </div>
+        </div>
+                @foreach (var Kom in ViewBag.komentarze)
+        {
+            @if (Kom.GraId == Model.Id) 
+            {
+                <div class="row">
+                    <!--Dodaj png ocena i Wystylizuj komentarz-->
+                    <div class="card" style="margin-top:3vh; margin-left:5vh; width:80vh; background-color:rgba(247,247,247,255);">
+                        <div class="card-body" style="width:80vh;">
+                            <div class="col-1" style="width:80vh;">
+                                <h2 style="font-size:30px">
+                                    @Kom.Username
+                                </h2>
+                                <a>Ocena:</a>
+                                @if (Kom.Ocena == "1")
+                                {
+                                    <img src="~/images/star1.jpg" style="width:60px;height:20px;" />
+                                }
+                                @if (Kom.Ocena == "2")
+                                {
+                                    <img src="~/images/star2.jpg" style="width:60px;height:20px;" />
+                                }
+                                @if (Kom.Ocena == "3")
+                                {
+                                    <img src="~/images/star3.jpg" style="width:60px;height:20px;" />
+                                }
+                                @if (Kom.Ocena == "4")
+                                {
+                                    <img src="~/images/star4.jpg" style="width:60px;height:20px;" />
+                                }
+                                @if (Kom.Ocena == "5")
+                                {
+                                    <img src="~/images/star5.jpg" style="width:60px;height:20px;" />
+                                }
+                            </div>
+                            <div style="width:40rem;" class="col-2">
+                                <div style="height:50px;"></div>
+                                <h5 style="left:6rem;">
+                                    @Kom.Treść
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+
+</div>    
+<!-- The Modal -->
+<div class="modal fade" id="Kosz">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Dodaj do koszyka:</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">
+ <table class="table table-sm table-responsive-md" style="background-color:rgba(247,247,247,255);">
+  <thead style="background-color:black; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; color:white;">
+    <tr>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col">Cena</th>
+      <th scope="col">Ilość</th>
+      <th scope="col">Łącznie:</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>                <img class="card-img-top" src="~/images/okładka.jpeg" alt="Card image" style="height:20vh;width:14vh;" />
+</td>
+      <td>                    <h4 >Battlefield 1</h4>
+</td>
+      <td>                    <h5 >59.99 zł</h5>
+</td>
+<td>
+                    <h3 >1 <br> </h3>
+
+</td>
+<td>
+    <h4>
+        59.99 zł
+    </h4>
+</td>
+    </tr>
+  </tbody>
+</table>
+
+   </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+                <a href=@Url.Action("KoszykAdd","Home", new {id=@Model.Id})>
+          <button type="button" class="btn btn-dark">Przejdź do koszyka</button>
+</a>
+      </div>
+</div>
+    </div>
+
+</div>
+<div class="modal fade" id="Koment">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">New message</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Nazwa użytkownika:</label>
+            <input type="text" class="form-control">
+          </div>
+<select class="form-select" aria-label="Default select example">
+  <option selected>Ocena:</option>
+  <option value="1">jedna gwiazdka</option>
+  <option value="2">dwie gwiazdki</option>
+  <option value="3">trzy gwiazdki</option>
+    <option value="4">cztery gwiazdki</option>
+  <option value="5">pięć gwiazdek</option>
+
+</select>
+
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Treść komentarza:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
+        <button type="button" class="btn btn-primary">Wyślij komentarz!</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
