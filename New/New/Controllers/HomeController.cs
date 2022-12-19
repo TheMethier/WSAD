@@ -36,7 +36,6 @@ namespace New.Controllers
         }
         public IActionResult Game(int id)
         {
-<<<<<<< HEAD
             var cart = SessionHelper.GetObjectFromJson<List<Element_koszyka>>(HttpContext.Session, "cart");
             var gra = _context.Gra
                 .Find(id);
@@ -44,10 +43,9 @@ namespace New.Controllers
             ViewBag.Kosz = card;
             ViewBag.komentarze = _context.NowyKomentarz.ToList();
 
-=======
+
             var gra = _context.Gra.Find(id);
             ViewBag.komentarze = _context.NowyKomentarz.ToList();
->>>>>>> f04acf0876faa0f29d8a97849a6c8ad0cc3a37ab
             return View(gra);
         }
         public IActionResult Dodajkomentarz(int id)
