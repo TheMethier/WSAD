@@ -2288,11 +2288,19 @@
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "D:\\Kredek\\Nowy folder\\Strona-z-grami\\New\\New\\New.csproj",
       "projectName": "New",
       "projectPath": "D:\\Kredek\\Nowy folder\\Strona-z-grami\\New\\New\\New.csproj",
       "packagesPath": "C:\\Users\\Graczbezgier\\.nuget\\packages\\",
       "outputPath": "D:\\Kredek\\Nowy folder\\Strona-z-grami\\New\\New\\obj\\",
+=======
+      "projectUniqueName": "C:\\Users\\mario\\Desktop\\zadaniedomowekredek2\\Strona-z-grami\\New\\New\\New.csproj",
+      "projectName": "New",
+      "projectPath": "C:\\Users\\mario\\Desktop\\zadaniedomowekredek2\\Strona-z-grami\\New\\New\\New.csproj",
+      "packagesPath": "C:\\Users\\mario\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\mario\\Desktop\\zadaniedomowekredek2\\Strona-z-grami\\New\\New\\obj\\",
+>>>>>>> f04acf0876faa0f29d8a97849a6c8ad0cc3a37ab
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

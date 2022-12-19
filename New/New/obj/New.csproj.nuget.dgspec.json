@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "D:\\Kredek\\Nowy folder\\Strona-z-grami\\New\\New\\New.csproj": {}
   },
   "projects": {
@@ -12,6 +13,19 @@
         "projectPath": "D:\\Kredek\\Nowy folder\\Strona-z-grami\\New\\New\\New.csproj",
         "packagesPath": "C:\\Users\\Graczbezgier\\.nuget\\packages\\",
         "outputPath": "D:\\Kredek\\Nowy folder\\Strona-z-grami\\New\\New\\obj\\",
+=======
+    "C:\\Users\\mario\\Desktop\\zadaniedomowekredek2\\Strona-z-grami\\New\\New\\New.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\mario\\Desktop\\zadaniedomowekredek2\\Strona-z-grami\\New\\New\\New.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\mario\\Desktop\\zadaniedomowekredek2\\Strona-z-grami\\New\\New\\New.csproj",
+        "projectName": "New",
+        "projectPath": "C:\\Users\\mario\\Desktop\\zadaniedomowekredek2\\Strona-z-grami\\New\\New\\New.csproj",
+        "packagesPath": "C:\\Users\\mario\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mario\\Desktop\\zadaniedomowekredek2\\Strona-z-grami\\New\\New\\obj\\",
+>>>>>>> f04acf0876faa0f29d8a97849a6c8ad0cc3a37ab
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

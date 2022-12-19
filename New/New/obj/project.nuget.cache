@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "4sIylTaBLj1oWlqIqbllNvMoss/Je70UkYVqSxQZgawSkRfinn9lVKOLzn0exZob/r7KbXjOIyvRbg3y8+7j5Q==",
   "success": true,
   "projectFilePath": "D:\\Kredek\\Nowy folder\\Strona-z-grami\\New\\New\\New.csproj",
+=======
+  "dgSpecHash": "dFGce5nknPJnP8PnwX1P6n/o7+OCsFm9Q7yZAjPgfKXuKJDFjKSDSN90R2orvDWgFhfB0T4LxrKx5MiS63or8g==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\mario\\Desktop\\zadaniedomowekredek2\\Strona-z-grami\\New\\New\\New.csproj",
+>>>>>>> f04acf0876faa0f29d8a97849a6c8ad0cc3a37ab
   "expectedPackageFiles": [
     "C:\\Users\\Graczbezgier\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Graczbezgier\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\2.2.0\\microsoft.aspnetcore.cryptography.internal.2.2.0.nupkg.sha512",
