@@ -33,11 +33,11 @@ namespace New.Migrations
                     b.Property<int>("GraId")
                         .HasColumnType("int");
 
+                    b.Property<int>("Ilość")
+                        .HasColumnType("int");
+
                     b.Property<double>("Razem")
                         .HasColumnType("float");
-
-                    b.Property<int>("ilość")
-                        .HasColumnType("int");
 
                     b.HasKey("ElementId");
 
@@ -64,6 +64,9 @@ namespace New.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nazwa")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Okładka")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Opis")
@@ -192,7 +195,7 @@ namespace New.Migrations
 
             modelBuilder.Entity("New.Models.OrderDetails", b =>
                 {
-                    b.HasOne("New.Models.Gra", "gra")
+                    b.HasOne("New.Models.Gra", "Gra")
                         .WithMany("OrderDetails")
                         .HasForeignKey("GraId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -204,9 +207,9 @@ namespace New.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Order");
+                    b.Navigation("Gra");
 
-                    b.Navigation("gra");
+                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("New.Models.Gra", b =>

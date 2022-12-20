@@ -11,9 +11,11 @@ namespace New.Controllers
         //Dodaj stronę główną, kod rabatowy KredekPizza,
         //scrollnav 
         private readonly DataContext _context;
+      public Rabat Rabat { get; set; }
         public HomeController(DataContext context)
         {
             _context = context;
+            Rabat = new Rabat();
         }
         public IActionResult Index()
         {
@@ -27,7 +29,9 @@ namespace New.Controllers
         {
             var cart = SessionHelper.GetObjectFromJson<List<Element_koszyka>>(HttpContext.Session, "cart");
             ViewBag.Kosz = cart;
-            return View();
+            var gra= _context.Gra.ToList();
+            ViewBag.gra = gra;
+            return View(gra);
         }
         public IActionResult Game(int id)
         {
@@ -71,10 +75,17 @@ namespace New.Controllers
             {
                 List<Element_koszyka> kosz = new List<Element_koszyka>();
                 if (kosz.Count == 0) {
-                    kosz.Add(new Element_koszyka() { Gra = gra, ilość = 1, ElementId = kosz.Count,Razem=gra.Cena });
+          
+                    
+                    
+                        kosz.Add(new Element_koszyka() { Gra = gra, Ilość = 1, ElementId = kosz.Count, Razem = gra.Cena });
                     
                 }
-                
+                else
+                {
+                    kosz.Add(new Element_koszyka() { Gra = gra, Ilość = 1, ElementId = kosz.Count+1, Razem = gra.Cena });
+
+                }
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", kosz);
             }
             else {
@@ -82,12 +93,12 @@ namespace New.Controllers
                 var exist =isExist(id);
                 if(exist!=-1)
                 {      
-                    kosz[exist].ilość += 1;
+                    kosz[exist].Ilość += 1;
                     kosz[exist].Razem = kosz[exist].Razem + kosz[exist].Gra.Cena;
                 }
                 else
                 {
-                    kosz.Add(new Element_koszyka() { Gra = gra, GraId=gra.Id, ilość = 1, ElementId=kosz.Count, Razem=gra.Cena });
+                    kosz.Add(new Element_koszyka() { Gra = gra, GraId=gra.Id, Ilość = 1, ElementId=kosz.Count, Razem=gra.Cena });
                 }
                 SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", kosz);
             }
@@ -100,9 +111,9 @@ namespace New.Controllers
             var exist=isExist(id);
             if (exist!=-1)
             {
-                if (kosz[exist].ilość > 1)
+                if (kosz[exist].Ilość > 1)
                 {
-                    kosz[exist].ilość -= 1;
+                    kosz[exist].Ilość -= 1;
                     kosz[exist].Razem=kosz[exist].Razem-kosz[exist].Gra.Cena;
                 }
                 else
@@ -117,23 +128,54 @@ namespace New.Controllers
             SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", kosz);
             return RedirectToAction("Koszyk");
         }
+        
         public IActionResult Koszyk()
         {
             var cart = SessionHelper.GetObjectFromJson<List<Element_koszyka>>(HttpContext.Session, "cart");
             ViewBag.cart = cart;
-            
+            Rabat rabat = Rabat;
+            rabat.RRabat = "";
             if (cart != null)
             {
                 ViewBag.cart = cart.ToList();
-                ViewBag.Razem = cart.Sum(x => x.Gra.Cena * x.ilość);
+                ViewBag.Razem = cart.Sum(x => x.Gra.Cena * x.Ilość);
             }
             //pomysł - lista w sesji będzie się "przepisywała" do DB, gdy będzie widoczna, a nie gdy użytkownik będzie poza koszykiem
-            return View();
+            return View(rabat);
+        }
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public IActionResult Koszyk([Bind("RRabat")] Rabat rabat)
+        {
+            var cart = SessionHelper.GetObjectFromJson<List<Element_koszyka>>(HttpContext.Session, "cart");
+            ViewBag.cart = cart;
+            Rabat rabat1 = Rabat;
+            if (cart != null)
+            {
+                ViewBag.cart = cart.ToList();
+                ViewBag.Razem = cart.Sum(x => x.Gra.Cena * x.Ilość);
+            }
+            if(rabat.RRabat == "KREDEKPIZZA")
+            {
+                ViewBag.Razem = cart.Sum(x=>x.Gra.Cena*x.Ilość)*0.85;
+                ViewBag.rabat = rabat;
+                rabat1.RRabat = "KREDEKPIZZA";
+                Rabat.RRabat = "KREDEKPIZZA";
+
+            }
+            return View("Koszyk",rabat);
+
         }
         public IActionResult MakeOrder()
         {
             var cart = SessionHelper.GetObjectFromJson<List<Element_koszyka>>(HttpContext.Session, "cart");
             ViewBag.cart = cart;
+            double razem = 0;
+            foreach (var element in cart.ToList())
+            {
+                razem+=element.Razem;
+            }
+            ViewBag.razem = razem;
             return View();
         }
         [HttpPost]
@@ -145,7 +187,7 @@ namespace New.Controllers
             {
                 var cart = SessionHelper.GetObjectFromJson<List<Element_koszyka>>(HttpContext.Session, "cart");
                 order.CreatedDate = DateTime.Now;
-                order.Razem = cart.Sum(x => x.ilość * x.Gra.Cena);
+                order.Razem = cart.Sum(x => x.Ilość * x.Gra.Cena);
                 _context.Add(order);
                 _context.SaveChanges();
                 foreach (var element in cart)
@@ -160,9 +202,9 @@ namespace New.Controllers
                             {
                                 GraId = _context.Gra.Find(graid).Id,
                                 OrderId = _context.Order.Find(order.Id).Id,
-                                ilość = element.ilość,
-                                gra = _context.Gra.Find(graid),
-                                Cena = (_context.Gra.Find(graid).Cena * element.ilość),
+                                ilość = element.Ilość,
+                                Gra = _context.Gra.Find(graid),
+                                Cena = (_context.Gra.Find(graid).Cena * element.Ilość),
                                 Order = _context.Order.Find(order.Id),
                             };
                             _context.OrderDetails.Add(details);
@@ -191,10 +233,11 @@ namespace New.Controllers
             foreach (var item in orderd)
             {
                 var gra = _context.Gra.Find(item.GraId);
-                Games.Add(new Element_koszyka() { Gra=gra, ilość=item.ilość, Razem=gra.Cena*item.ilość});
+                Games.Add(new Element_koszyka() { Gra=gra, Ilość=item.ilość, Razem=gra.Cena*item.ilość});
             }
             ViewBag.order = order;
             ViewBag.games= Games;
+            ViewBag.rabat = Rabat.RRabat;
             return View();
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

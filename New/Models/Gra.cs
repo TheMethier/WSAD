@@ -25,7 +25,7 @@
         public string Opis { get; set; }
         public string Specyfikacjat { get; set; }
         public string Aktywacja { get; set; }
-
+        public string Okładka { get; set; }
         public ICollection<NowyKomentarz> NowyKomentarz { get; set; }
         public ICollection<Element_koszyka> Element_koszyka { get; set; }
         public ICollection<OrderDetails> OrderDetails { get; set; }

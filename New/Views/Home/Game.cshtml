@@ -1,6 +1,6 @@
 ﻿@model New.Models.Gra
 @{
-    ViewData["Title"] = "Gra";
+    ViewData["Title"] = @Model.Nazwa;
 }
 <div class="container-fluid" style="margin:10px;">
    <div class="row">
@@ -53,10 +53,10 @@
   </li>
 </ul>
 <div class="tab-content" id="pills-tabContent" style="background-color: rgba(247,247,247,255);">
-  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">Czternastą odsłoną serii Battlefield będzie Battlefield 1 i będzie kontynuował sukcesy swoich poprzedników. Tym razem popularna gra FPS zostanie osadzona w I wojnie światowej, pierwszej tego typu grze Battlefield.
+  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" style="font-family:'Gill Sans MT';">
 @Model.Opis</div>
-  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...</div>
-  <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
+  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" style="font-family:'Gill Sans MT';">>@Model.Specyfikacjat</div>
+  <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"style="font-family:'Gill Sans MT';">@Model.Aktywacja</div>
 </div>
 </div>
 </div
@@ -138,6 +138,7 @@ Adolf Hitler
 
 </div>    
 <!-- The Modal -->
+
 <div class="modal fade" id="Kosz">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -162,11 +163,11 @@ Adolf Hitler
   <tbody>
     <tr>
       <th scope="row">1</th>
-      <td>                <img class="card-img-top" src="~/images/okładka.jpeg" alt="Card image" style="height:20vh;width:14vh;" />
+      <td>                <img class="card-img-top" src="~/images/@Model.Okładka" alt="Card image" style="height:20vh;width:14vh;" />
 </td>
-      <td>                    <h4 >Battlefield 1</h4>
+      <td>                    <h4 >@Model.Nazwa</h4>
 </td>
-      <td>                    <h5 >59.99 zł</h5>
+      <td>                    <h5 >@Model.Cena zł</h5>
 </td>
 <td>
                     <h3 >1 <br> </h3>
@@ -174,7 +175,7 @@ Adolf Hitler
 </td>
 <td>
     <h4>
-        59.99 zł
+        @Model.Cena zł
     </h4>
 </td>
     </tr>

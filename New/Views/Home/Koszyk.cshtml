@@ -1,5 +1,7 @@
-﻿@using New.Models
-
+﻿@model New.Models.Rabat;
+@{
+    ViewData["Title"] = "Koszyk";
+}
 @if (ViewBag.cart != null)
 {
     @if (ViewBag.cart.Count > 0)
@@ -22,11 +24,11 @@
 
                     <tr>
                         <th scope="row">@item.ElementId</th>
-                        <td>                <img class="card-img-top" src="~/images/okładka.jpeg" alt="Card image" style="height:20vh;width:14vh;" />
+                        <td>                <img class="card-img-top" src="~/images/@item.Gra.Okładka" alt="Card image" style="height:20vh;width:14vh;" />
                         </td>
                         <td>                    <h4>@item.Gra.Nazwa</h4>
                         </td>
-                        <td>                    <h5 >@item.Gra.Cena</h5>
+                        <td>                    <h5 >@item.Gra.Cena zł</h5>
                         </td>
                         <td>
                             <a href=@Url.Action("KoszykAdd","Home", new {id=@item.Gra.Id})>
@@ -35,7 +37,7 @@
                                     <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
                                 </svg>
                             </a>
-                            <h3 >@item.ilość <br> </h3>
+                            <h3 >@item.Ilość <br> </h3>
                             <a href=@Url.Action("KoszykRemove","Home", new {id=@item.Gra.Id})>
 
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16">
@@ -58,9 +60,21 @@
 
 
         <div class="card" style="background-color:rgba(247,247,247,255);width:22rem;margin-left:70%;border-radius:40px;"><h1 style="margin-left:2rem;margin-top:2rem; font-size:2rem;">
-            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Kod Rabatowy" style="width:15rem; border-radius: 15px;">
-            Razem: @ViewBag.Razem zł</h1>
 
+@if(Model.RRabat!="KREDEKPIZZA")
+{
+<form asp-action="Koszyk">
+    	<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input asp-for="RRabat" class="form-control" id="exampleFormControlInput1" placeholder="Kod Rabatowy" style="width:15rem; border-radius: 15px;">
+                <input type="submit" value="Submit!" class="btn btn-dark btn-lg btn-block" style="border-radius:15px;"/> 
+        </form>
+}          
+else{
+    <h1 style="color:red;">Rabat: -15%</h1>
+    <img src="/images/Pizza.jpg" style="height:40px;width:40px"/>
+}
+<h1>Razem: @ViewBag.Razem zł</h1>
 
             <a href=@Url.ActionLink("MakeOrder","Home")><button type="button" class="btn btn-dark" style="margin-top:3vh;  border-radius: 40px;
  width:22rem;height:10vh;">Złóż zamówenie</button>

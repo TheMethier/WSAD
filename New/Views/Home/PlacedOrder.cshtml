@@ -1,13 +1,13 @@
 ﻿@{
-    ViewData["Title"] = "Gra";
+    ViewData["Title"] = "Szeczegóły zamówienia";
 }
 
-  
+ @ViewBag.rabat
    <section class="h-100 gradient-custom">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-lg-10 col-xl-8">
-        <div class="card" style="border-radius: 10px;height:31rem;width:60rem;">
+        <div class="card" style="border-radius: 10px;width:60rem;">
           <div class="card-header px-4 py-5">
             <h5 class="text-muted mb-0">Thanks for your Order, <span style="color: #a8729a;">@ViewBag.order.Username</span>!</h5>
           </div>
@@ -28,15 +28,15 @@
      
                 <tr>
                     <th scope="row">@item.ElementId</th>
-                    <td>                <img class="card-img-top" src="~/images/okładka.jpeg" alt="Card image" style="height:20vh;width:14vh;" />
+                    <td>                <img class="card-img-top" src="~/images/@item.Gra.Okładka" alt="Card image" style="height:20vh;width:14vh;" />
                     </td>
                     <td>                    <h4>@item.Gra.Nazwa</h4>
                     </td>
-                    <td>                    <h5 >@item.Gra.Cena</h5>
+                    <td>                    <h5 >@item.Gra.Cena zł</h5>
                     </td>
                     <td>
                                        
-                        <h3 >@item.ilość <br> </h3>
+                        <h3 >@item.Ilość <br> </h3>
                 
 
 
@@ -55,8 +55,16 @@
 
             <div class="d-flex justify-content-between pt-2">
               <p class="text-muted mb-0">ID : @ViewBag.order.Id</p>
-              <p class="text-muted mb-0"><span class="fw-bold me-4">Rabat:</span> 0</p>
-            </div>
+              @if(ViewBag.rabat!="KREDEKPIZZA"){
+                            <p class="text-muted mb-0"><span class="fw-bold me-4">Rabat:</span>  Jeszcze Jak! </p>
+                        }
+                        else
+                        {
+                                 <p class="text-muted mb-0"><span class="fw-bold me-4">Rabat:</span>-15%</p>
+                       
+                        }
+                    </div>
+             
 
             <div class="d-flex justify-content-between">
               <p class="text-muted mb-0">Data zamówienia : @ViewBag.order.CreatedDate</p>

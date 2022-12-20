@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<New.Models.Gra>
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Bestsellery";
 }
 <!--container p-3 my-3 bg-dark text-white
 <div class="text-center">
@@ -19,10 +19,10 @@
   <img class="card-img-top" src="~/images/@gra.Zdjęcie1" alt="Card image cap">
   <div class="card-body">
                               <h5 style="font-family: 'Arial Rounded MT'; font-size:25px;text-decoration:none">@Html.DisplayFor(modelItem => gra.Nazwa)</h5>
-                        <h8 style="font-size:20px;">@Html.DisplayFor(modelItem => gra.Cena) zł</h8>
 
   </div>
   <div class="card-footer" style="background-color:black; height:5rem;">
+                                    <h8 style="font-size:30px;color:white; font-family:'Microsoft Sans Serif';">@gra.Cena zł</h8>
 
   </div>
 </div>

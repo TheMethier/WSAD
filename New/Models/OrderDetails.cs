@@ -7,7 +7,7 @@
         public int GraId { get; set; }
         public int ilość { get; set; }
         public double Cena { get; set; }
-        public Gra gra { get; set; }
+        public Gra Gra { get; set; }
         public Order Order { get; set; }
     }
 }
