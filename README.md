@@ -1,11 +1,5 @@
-# Strona-z-grami
-Aplikacja webowa sklepu z grami z obsługą koszyka i komentarzy zrealizowana przy użyciu ASP .Net Core MVC z frontendem pisanym w CSSie oraz Bootstrapie 5.
-# Założenia projektowe (co powinno się na takiej stronie znajdować):
-- koszyk z obsługą dodawania gier
-- użytkownicy (logowanie, rejestrowanie, obsługa zamówień, obsługa komentarzy)
-- strona główna z okienkami 
-- wyświetlanie opisu gry itp.
-- komentarze (dodawanie komentarzy do gry)
+# WSAD
+A web application for an electronics store featuring registration and login functionalities based on JWT Authentication Token. It provides the ability for both logged-in and unauthenticated users to place orders, along with features such as product filtering. The user panel allows users to track the history of placed orders, while the admin hub offers the capability to perform CRUD operations.
 <!---
 I.Gra:
 Id
