@@ -1,6 +1,5 @@
 # WSAD
-A web application for an electronics store featuring registration and login functionalities based on JWT Authentication Token. It provides the ability for both logged-in and unauthenticated users to place orders, along with features such as product filtering. The user panel allows users to track the history of placed orders, while the admin hub offers the capability to perform CRUD operations.
-<!---
+A web application for a game store featuring a shopping cart, a game review system, basic registration and login functionalities, and the ability for unauthenticated users to place orders using a form with data validation.<!---
 I.Gra:
 Id
 Nazwa 
